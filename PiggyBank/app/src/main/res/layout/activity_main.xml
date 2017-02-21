@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="35dp"
+    tools:context="com.example.adriana.piggybank.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="Current Balance"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:background="@color/darkerGreen"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:text="$ 0.00"
+            android:textSize="70dp"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:elegantTextHeight="true"
+            android:background="@color/lightGreen"
+            android:id="@+id/currentTv" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="$1"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/darkerGreen"
+                android:id="@+id/oneBttn" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/yellow"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:text="$5"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:id="@+id/fiveBttn" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/yellow"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="$10"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:id="@+id/tenBttn" />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:textSize="60dp"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:background="@android:color/white"
+            android:id="@+id/amountEt" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:text="WITHDRAW"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:id="@+id/withdrawBttn" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="DEPOSIT"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:id="@+id/depositBttn" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
