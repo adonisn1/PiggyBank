@@ -3,7 +3,10 @@ package com.example.adriana.piggybank;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,16 +88,19 @@ public class MainActivity extends AppCompatActivity {
         withdrawBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float withdraw = currentBalance - Float.valueOf(amountEt.getText().toString()) ;
-                if (withdraw < 0) {
-                    Toast.makeText(getApplicationContext(), "Not enough funds", Toast.LENGTH_SHORT).show();
-                    amountEt.setText("");
-                } else {
-                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
+                String text = amountEt.getText().toString();
+                if (!text.equals("")) {
+                    float withdraw = currentBalance - Float.valueOf(text);
+                    if (withdraw < 0) {
+                        Toast.makeText(getApplicationContext(), "Not enough funds", Toast.LENGTH_SHORT).show();
+                        amountEt.setText("");
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
 
-                    peditor.putFloat("BALANCE", withdraw);
-                    peditor.commit();
-                    startActivity(intent);
+                        peditor.putFloat("BALANCE", withdraw);
+                        peditor.commit();
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -102,12 +108,15 @@ public class MainActivity extends AppCompatActivity {
         depositBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
-                float deposit = currentBalance + Float.valueOf(amountEt.getText().toString()) ;
-                //intent.putExtra("BALANCE", deposit);
-                peditor.putFloat("BALANCE", deposit);
-                peditor.commit();
-                startActivity(intent);
+                String text = amountEt.getText().toString();
+                if (!text.equals("")) {
+                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
+                    float deposit = currentBalance + Float.valueOf(text);
+                    //intent.putExtra("BALANCE", deposit);
+                    peditor.putFloat("BALANCE", deposit);
+                    peditor.commit();
+                    startActivity(intent);
+                }
             }
         });
 

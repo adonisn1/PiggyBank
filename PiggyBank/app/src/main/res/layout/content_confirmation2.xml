@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="50dp"
-    tools:context="com.example.adriana.piggybank.ConfirmationActivity2">
+    tools:context="com.example.adriana.piggybank.ConfirmationActivity2"
+    android:background="@color/colorAccent">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,8 +16,10 @@
         android:textAlignment="center"
         android:text="Expected Balance"
         android:textColor="@android:color/white"
-        android:textSize="30dp"
-        android:background="@color/darkerGreen"/>
+        android:textSize="42sp"
+        android:background="@color/darkerGreen"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -36,7 +39,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_purple"
+            android:background="@android:color/holo_red_dark"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:padding="10dp"
@@ -47,7 +50,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_light"
+            android:background="@android:color/holo_green_dark"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:text="Accept"
