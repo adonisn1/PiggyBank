@@ -1,0 +1,16 @@
+Adriana Donis - adonisn1
+Matias Eisler - meisler1
+
+Piggy Bank Implementation
+
+For this implementation, we kept a similar design than the one specified.
+ However, we did change the color scheme to a green-based palette, as we felt
+ that green would represent the color of money.
+
+We used green and red for accept/cancel buttons, as these two colors are
+ complements, and therefore provide a clear distinction between their
+ functionality.
+
+
+
+
