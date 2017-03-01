@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     float amount = 0;
     float currentBalance = 0;
     SharedPreferences myPrefs;
+    boolean creating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         myPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         final SharedPreferences.Editor peditor = myPrefs.edit();
-        peditor.putFloat("currentBalance", currentBalance);
-        peditor.commit();
+        //peditor.putFloat("currentBalance", currentBalance);
+        //peditor.commit();
 
 
         amountEt = (EditText) findViewById(R.id.amountEt);
@@ -93,11 +94,12 @@ public class MainActivity extends AppCompatActivity {
                     float withdraw = currentBalance - Float.valueOf(text);
                     if (withdraw < 0) {
                         Toast.makeText(getApplicationContext(), "Not enough funds", Toast.LENGTH_SHORT).show();
-                        amountEt.setText("");
+                        amountEt.setText("0.00");
+                        amountEt.setHint("0.00");
                     } else {
                         Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
 
-                        peditor.putFloat("BALANCE", withdraw);
+                        peditor.putFloat("expectedBalance", withdraw);
                         peditor.commit();
                         startActivity(intent);
                     }
@@ -112,24 +114,44 @@ public class MainActivity extends AppCompatActivity {
                 if (!text.equals("")) {
                     Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
                     float deposit = currentBalance + Float.valueOf(text);
-                    //intent.putExtra("BALANCE", deposit);
-                    peditor.putFloat("BALANCE", deposit);
+                    //intent.putExtra("expectedBalance", deposit);
+                    peditor.putFloat("expectedBalance", deposit);
                     peditor.commit();
                     startActivity(intent);
                 }
             }
         });
 
+        creating = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        final SharedPreferences.Editor peditor = myPrefs.edit();
+        currentBalance = Float.valueOf(currentTv.getText().toString());
+        peditor.putFloat("currentBalance", currentBalance);
+        String text = amountEt.getText().toString();
+        if (!text.equals("")) {
+            float deposit = Float.valueOf(text);
+            peditor.putFloat("deposit", deposit);
+        }
+        peditor.commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (!creating) {
+            amountEt.setText(String.format("%.02f", myPrefs.getFloat("deposit", 0)));
+        } else {
+            amountEt.setText("0.00");
+            amountEt.setHint("0.00");
+            creating = false;
+        }
         amount = 0;
         currentBalance = myPrefs.getFloat("currentBalance", 0);
         currentTv.setText(String.format("%.02f", currentBalance));
-        amountEt.setText("");
-        amountEt.setHint("0.00");
 
     }
 }

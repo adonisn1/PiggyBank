@@ -27,7 +27,7 @@ public class ConfirmationActivity2 extends AppCompatActivity {
 
         Context context = getApplicationContext();
         myPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        amount = myPrefs.getFloat("BALANCE", 0);
+        amount = myPrefs.getFloat("expectedBalance", 0);
 
         TextView balanceTv = (TextView) findViewById(R.id.balanceTv);
 //        final float amount = getIntent().getFloatExtra("BALANCE", 0);
@@ -38,7 +38,7 @@ public class ConfirmationActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor peditor = myPrefs.edit();
-
+                peditor.putFloat("deposit", (float) 0);
                 peditor.putFloat("currentBalance", amount);
                 peditor.commit();
                 finish();
