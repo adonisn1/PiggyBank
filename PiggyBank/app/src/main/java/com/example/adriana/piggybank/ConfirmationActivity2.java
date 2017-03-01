@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ConfirmationActivity2 extends AppCompatActivity {
 
@@ -44,10 +45,19 @@ public class ConfirmationActivity2 extends AppCompatActivity {
                 finish();
             }
         });
+        float amount = myPrefs.getFloat("deposit", (float) 0);
+        if (myPrefs.getBoolean("adding", false)) {
+            Toast.makeText(getApplicationContext(), "Adding $" + amount + " to current balance.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Withrawing $" + amount + " from current balance.", Toast.LENGTH_LONG).show();
+        }
         cancelBt = (Button) findViewById(R.id.cancelBttn);
         cancelBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor peditor = myPrefs.edit();
+                peditor.putFloat("deposit", (float) 0);
+                peditor.commit();
                 finish();
             }
         });

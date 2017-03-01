@@ -97,10 +97,12 @@ public class MainActivity extends AppCompatActivity {
                         amountEt.setText("0.00");
                         amountEt.setHint("0.00");
                     } else {
+                        peditor.putFloat("expectedBalance", withdraw);
+                        peditor.putBoolean("adding", false);
+                        peditor.commit();
                         Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
 
-                        peditor.putFloat("expectedBalance", withdraw);
-                        peditor.commit();
+
                         startActivity(intent);
                     }
                 }
@@ -112,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = amountEt.getText().toString();
                 if (!text.equals("")) {
-                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
                     float deposit = currentBalance + Float.valueOf(text);
-                    //intent.putExtra("expectedBalance", deposit);
                     peditor.putFloat("expectedBalance", deposit);
+                    peditor.putBoolean("adding", true);
                     peditor.commit();
+                    Intent intent = new Intent(MainActivity.this, ConfirmationActivity2.class);
                     startActivity(intent);
                 }
             }
